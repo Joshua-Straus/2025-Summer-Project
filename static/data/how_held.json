@@ -1,0 +1,10 @@
+{
+    "how_held":
+    [
+        "Held Individually (in the name of the estate holder)",
+        "Held Jointly with Rights of Survivorship",
+        "Held in the name of a Trust",
+        "Held with a TOD or POD designation",
+        "Unknown"
+    ]
+}

@@ -1,0 +1,218 @@
+{
+  "asset_types": [
+    {
+      "name": "Bank",
+      "subtypes": [
+        "Checking",
+        "Savings",
+        "CD",
+        "Money Market"
+      ],
+      "fields": {
+        "description": "required",
+        "institution": "optional",
+        "how_held": "required",
+        "account_no": "optional",
+        "estimated_value": "required"
+      }
+    },
+    {
+      "name": "Investment Account",
+      "subtypes": [
+        "Brokerage",
+        "Stock Options",
+        "Restricted Stock Units",
+        "Crypto"
+      ],
+      "fields": {
+        "description": "required",
+        "institution": "optional",
+        "how_held": "required",
+        "account_no": "optional",
+        "beneficiary": "required",
+        "estimated_value": "required"
+      }
+    },
+    {
+      "name": "Individual Investment",
+      "subtypes": [
+        "Stocks",
+        "Bonds",
+        "Mutual Funds",
+        "Private Company Investments",
+        "Crypto"
+      ],
+      "fields": {
+        "description": "required",
+        "how_held": "required",
+        "estimated_value": "required"
+      }
+    },
+    {
+      "name": "Retirement",
+      "subtypes": [
+        "401K",
+        "IRA",
+        "Pension Plans",
+        "403b",
+        "Other deferred compensation"
+      ],
+      "fields": {
+        "description": "required",
+        "institution": "optional",
+        "account_no": "optional",
+        "beneficiary": "required",
+        "estimated_value": "required"
+      }
+    },
+    {
+      "name": "Life Insurance",
+      "subtypes": [
+        "Life Insurance",
+        "Annuities with death benefits"
+      ],
+      "fields": {
+        "description": "required",
+        "institution": "optional",
+        "account_no": "optional",
+        "beneficiary": "required",
+        "estimated_value": "required"
+      }
+    },
+    {
+      "name": "Vehicles",
+      "fields": {
+        "description": "required",
+        "how_held": "required",
+        "estimated_value": "required"
+      }
+    },
+    {
+      "name": "Real Estate",
+      "subtypes": [
+        "Primary Home",
+        "Secondary Home",
+        "Rental Property",
+        "Land"
+      ],
+      "fields": {
+        "description": "required",
+        "address": "required",
+        "how_held": "required",
+        "estimated_value": "required"
+      }
+    },
+    {
+      "name": "Business Interest",
+      "subtypes": [
+        "Sole Proprietorship",
+        "Partnership Interest",
+        "Closely-held Stock",
+        "LLC Membership",
+        "Business owned assets"
+      ],
+      "fields": {
+        "description": "required",
+        "how_held": "required",
+        "estimated_value": "required"
+      }
+    },
+    {
+      "name": "Personal Property",
+      "subtypes": [
+        "Household Goods",
+        "Jewelry and Watches",
+        "Collectables",
+        "Tools and Equipment",
+        "Firearms",
+        "Clothing and Personal Effects",
+        "Wine or Liquor Collections",
+        "Sporting Goods",
+        "Precious Metals"
+      ],
+      "fields": {
+        "description": "required",
+        "estimated_value": "required"
+      }
+    },
+    {
+      "name": "Health Saving",
+      "fields": {
+        "description": "required",
+        "institution": "optional",
+        "account_no": "optional",
+        "estimated_value": "required"
+      }
+    },
+    {
+      "name": "Online Payment",
+      "subtypes": [
+        "Paypal",
+        "Venmo"
+      ],
+      "fields": {
+        "description": "required",
+        "institution": "optional",
+        "how_held": "required",
+        "account_no": "optional",
+        "estimated_value": "required"
+      }
+    },
+    {
+      "name": "Intellectual Property",
+      "subtypes": [
+        "Copyrights",
+        "Patents",
+        "Trademarks",
+        "Royalties"
+      ],
+      "fields": {
+        "description": "required",
+        "how_held": "required",
+        "estimated_value": "required"
+      }
+    },
+    {
+      "name": "Ditial Assets",
+      "subtypes": [
+        "Domain Names",
+        "Digital files (with value)",
+        "Frequent Flyer/Travel Rewards",
+        "Social Media (influencer value)"
+      ],
+      "fields": {
+        "description": "required",
+        "institution": "optional",
+        "estimated_value": "required"
+      }
+    },
+    {
+      "name": "Other Asset",
+      "subtypes": [
+        "Tax Refunds due",
+        "Unclaimed Property",
+        "Personal Loans Owed",
+        "Memberships (transferrable)",
+        "Judgments Owed"
+      ],
+      "fields": {
+        "description": "required",
+        "estimated_value": "required"
+      }
+    },
+    {
+      "name": "Loans",
+      "subtypes": [
+        "Mortage",
+        "Home Equity",
+        "Lines of credit",
+        "Credit Card Debt"
+      ],
+      "fields": {
+        "description": "required",
+        "institution": "optional",
+        "estimated_value": "required"
+      }
+    }
+  ]
+}

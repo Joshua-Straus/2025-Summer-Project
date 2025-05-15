@@ -1,0 +1,45 @@
+[
+  {
+    "Asset": "Bank",
+    "subtype": "Checking",
+    "description": "ghv",
+    "institution": "",
+    "how_held": "ghv",
+    "account_no": "",
+    "estimated_value": "hgv"
+  },
+  {
+    "Asset": "Vehicles",
+    "description": "hgv",
+    "how_held": "hgv",
+    "estimated_value": "fcf"
+  },
+  {
+    "Asset": "Investment Account",
+    "subtype": "Brokerage",
+    "description": "H",
+    "institution": "htf",
+    "how_held": "Held Individually (in the name of the estate holder)",
+    "account_no": "",
+    "beneficiary": "tyf",
+    "estimated_value": "httf"
+  },
+  {
+    "Asset": "Bank",
+    "subtype": "Money Market",
+    "description": "utyf",
+    "institution": "turd",
+    "how_held": "Held Individually (in the name of the estate holder)",
+    "account_no": "",
+    "estimated_value": "gfd"
+  },
+  {
+    "Asset": "Bank",
+    "subtype": "Checking",
+    "description": "trd",
+    "institution": "trdtfdf",
+    "how_held": "Held Jointly with Rights of Survivorship",
+    "account_no": "ytyttrd",
+    "estimated_value": "kyttfytd"
+  }
+]
