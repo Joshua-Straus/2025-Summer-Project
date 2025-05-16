@@ -78,6 +78,28 @@ def update_user_data():
     except Exception as e:
         return jsonify({'status': 'error', 'message': str(e)}), 500
 
+@app.route('/deleteUserData', methods=['POST'])
+def delete_user_data():
+    try:
+        payload = request.get_json()
+        index = payload.get('index')
+
+        with open('userData.json') as f:
+            data = json.load(f)
+
+        if not isinstance(data, list) or index < 0 or index >= len(data):
+            return jsonify({'status': 'error', 'message': 'Invalid index'}), 400
+
+        # Remove the entry at that index
+        del data[index]
+
+        with open('userData.json', 'w') as f:
+            json.dump(data, f, indent=2)
+
+        return jsonify({'status': 'success'})
+
+    except Exception as e:
+        return jsonify({'status': 'error', 'message': str(e)}), 500
 
 
 

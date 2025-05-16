@@ -107,3 +107,60 @@ button[type="button"] {
 button[type="button"]:hover {
   background-color: #d32f2f;
 }
+
+.assetLedger {
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto 24px;
+  border-collapse: collapse;
+  font-size: 16px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.assetLedger thead {
+  background-color: #f3f3f3;
+}
+
+.assetLedger th,
+.assetLedger td {
+  padding: 14px 16px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+}
+
+.assetLedger th {
+  font-weight: 600;
+  color: #444;
+}
+
+.assetLedger td button {
+  background-color: #03a9f4;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.assetLedger td button:hover {
+  background-color: #0288d1;
+}
+
+.editBtn {
+  background-color: #03a9f4;
+}
+
+.editBtn:hover {
+  background-color: #0288d1;
+}
+
+.deleteBtn {
+  background-color: #f44336;
+}
+
+.deleteBtn:hover {
+  background-color: #d32f2f;
+}

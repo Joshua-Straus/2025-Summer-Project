@@ -3,7 +3,6 @@ let assetData; //assets.json data
 let assetEditorActive = false; //Whether an editor is active
 let howHeldOptions = []; //Data from static/data/how_held.json
 
-
 /*
 Fetches data from how_held.json and loads into howHeldOptions
  */
@@ -36,16 +35,12 @@ window.addEventListener('DOMContentLoaded', () => {
     })
     .then(data => {
       assetData = data;
-      renderAssetButtons(data, container);
+      renderAssetButtons(data);
     })
     .catch(err => {
       console.error("Error loading asset data:", err);
     });
 });
-
-
-
-
 
 /**
  * renders necessary buttons in container
@@ -65,7 +60,7 @@ function renderAssetButtons(data) {
   const showAssetsButton = document.createElement("button");
   showAssetsButton.id = "showAssetsButton";
   showAssetsButton.innerHTML = "Show Assets";
-  showAssetsButton.addEventListener("click", () => showUserData(container, data));
+  showAssetsButton.addEventListener("click", () => showUserData(data));
   container.appendChild(showAssetsButton);
 }
 
@@ -74,7 +69,7 @@ function renderAssetButtons(data) {
  * @param {*} container 
  * @param {*} data 
  */
-function showUserData(container, data) {
+function showUserData(data) {
   fetch('/getUserData')
     .then(response => {
       if (!response.ok) throw new Error("Failed to load user data");
@@ -84,36 +79,90 @@ function showUserData(container, data) {
       container.innerHTML = ""; // Clear buttons
 
       if (Array.isArray(userData) && userData.length > 0) {
-        userData.forEach((entry, index) => {
-            const entryDiv = document.createElement("div");
-            entryDiv.classList.add("userDataEntry");
+        const table = document.createElement("table");
+        table.classList.add("assetLedger");
 
-            for (const [key, value] of Object.entries(entry)) {
-                const field = document.createElement("p");
-                field.innerHTML = `<strong>${key}:</strong> ${value}`;
-                entryDiv.appendChild(field);
-            }
+        const thead = document.createElement("thead");
+        const headerRow = document.createElement("tr");
 
-            //THIS BELONGS INSIDE THE LOOP
-            const editBtn = document.createElement("button");
-            editBtn.textContent = "Edit";
-            editBtn.addEventListener("click", () => {
-                editAsset(entry, index);
+        ["Description", "Asset Type", "Value", "Actions"].forEach(title => {
+          const th = document.createElement("th");
+          th.textContent = title;
+          headerRow.appendChild(th);
         });
-        entryDiv.appendChild(editBtn);
 
-        container.appendChild(entryDiv);
-        container.appendChild(document.createElement("hr"));
+        thead.appendChild(headerRow);
+        table.appendChild(thead);
+
+        const tbody = document.createElement("tbody");
+
+        userData.forEach((entry, index) => {
+          const row = document.createElement("tr");
+
+          // 1. Description
+          const descTd = document.createElement("td");
+          descTd.textContent = entry.description || "—";
+          row.appendChild(descTd);
+
+          // 2. Asset type or subtype
+          const typeTd = document.createElement("td");
+          typeTd.textContent = entry.subtype || entry.Asset || "—";
+          row.appendChild(typeTd);
+
+          // 3. Estimated value
+          const valueTd = document.createElement("td");
+          valueTd.textContent = entry.estimated_value ? `$${entry.estimated_value}` : "—";
+          row.appendChild(valueTd);
+
+          // 4. Actions (Edit + Delete)
+          const actionTd = document.createElement("td");
+
+          // Edit button
+          const editBtn = document.createElement("button");
+          editBtn.textContent = "Edit";
+          editBtn.classList.add("editBtn");
+          editBtn.addEventListener("click", () => editAsset(entry, index));
+          actionTd.appendChild(editBtn);
+
+          // Delete button
+          const deleteBtn = document.createElement("button");
+          deleteBtn.textContent = "Delete";
+          deleteBtn.classList.add("deleteBtn");
+          deleteBtn.style.marginLeft = "8px";
+          deleteBtn.addEventListener("click", () => {
+          if (confirm("Are you sure you want to delete this asset?")) {
+            fetch('/deleteUserData', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ index: index })
+            })
+            .then(res => res.json())
+            .then(response => {
+              alert("Asset deleted.");
+              showUserData(assetData);
+            })
+            .catch(err => {
+              alert("Failed to delete asset.");
+              console.error(err);
+            });
+          }
+        });
+
+        actionTd.appendChild(deleteBtn);
+        row.appendChild(actionTd);
+        tbody.appendChild(row);
     });
+      table.appendChild(tbody);
+      container.appendChild(table);
+      container.appendChild(document.createElement("hr"));
       } else {
         container.innerHTML = "<p>No user data available.</p>";
       }
-
       // Add back button
       const backBtn = document.createElement("button");
       backBtn.textContent = "Back";
       backBtn.addEventListener("click", () => {
-        renderAssetButtons(data, container); // Go back to asset buttons
+        renderAssetButtons(data); // Go back to asset buttons
       });
       container.appendChild(backBtn);
     })
@@ -382,7 +431,7 @@ function editAsset(entry, index) {
   cancelBtn.type = "button";
   cancelBtn.addEventListener("click", () => {
     assetEditorActive = false;
-    showUserData(container, assetData);
+    showUserData(assetData);
   });
 
   form.appendChild(saveBtn);
@@ -406,7 +455,7 @@ function editAsset(entry, index) {
       .then(response => {
         alert("Asset updated.");
         assetEditorActive = false;
-        showUserData(container, assetData);
+        showUserData(assetData);
       })
       .catch(err => {
         alert("Failed to update asset.");
